@@ -18,6 +18,7 @@ html {
   --icon-color: #afb1b8;
   --margin-gap: 30px;
   --padding-gap: 94px;
+  --animation: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* In all pages */
@@ -95,7 +96,7 @@ img {
   color: var(--accent-color);
 }
 
-/* Header */
+/* ========== Header ========== */
 
 .page-header {
   border-bottom: 1px solid #ececec;
@@ -117,7 +118,7 @@ img {
   line-height: 1.19;
 }
 
-/* Nav */
+/* ========== Nav ========== */
 
 .site-nav {
   display: flex;
@@ -138,6 +139,22 @@ img {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+}
+.current {
+  position: relative;
+}
+.current::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+
+  background: var(--accent-color);
+  border-radius: 2px;
 }
 
 .contact-nav {
@@ -164,7 +181,7 @@ img {
   fill: currentColor;
 }
 
-/* Hero */
+/* ========== Hero ========== */
 
 .hero {
   padding-top: 200px;
@@ -201,7 +218,7 @@ img {
   text-transform: uppercase;
 }
 
-/* Buttons */
+/* ========== Buttons ========== */
 
 .button {
   border-radius: 4px;
@@ -229,6 +246,36 @@ img {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
+.backdrop {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+  background: var(--primary-white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .filter-btn {
   padding: 6px 22px;
   text-align: center;
@@ -248,7 +295,7 @@ img {
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
-/* Feature */
+/* ========== Feature ========== */
 
 .feature {
   padding-top: var(--padding-gap);
@@ -291,7 +338,7 @@ img {
   line-height: 1.71;
 }
 
-/* Work */
+/* ========== Work ========== */
 
 .work {
   padding-bottom: var(--padding-gap);
@@ -338,7 +385,7 @@ img {
   line-height: 1.16;
 }
 
-/* Team */
+/* ========== Team ========== */
 
 .team {
   padding-top: var(--padding-gap);
@@ -412,7 +459,7 @@ img {
   background-color: var(--accent-color);
 }
 
-/* Clients */
+/* ========== Clients ========== */
 
 .client {
   padding-top: var(--padding-gap);
@@ -447,7 +494,7 @@ img {
   fill: var(--accent-color);
 }
 
-/* Footer*/
+/* ========== Footer ========== */
 
 .footer {
   background-color: var(--accent-background-color);
@@ -529,7 +576,7 @@ img {
   background-color: var(--accent-color);
 }
 
-/* Portfolio Filter section */
+/* ========== Portfolio Filter section ========== */
 
 .filter {
   padding-top: var(--padding-gap);
@@ -595,8 +642,9 @@ img {
 }
 .card-thumb {
   position: relative;
+  overflow: hidden;
 }
-.card-thumb::before {
+.card-overlay {
   content: '';
   position: absolute;
   top: 0;
@@ -605,30 +653,20 @@ img {
   height: 100%;
   background: rgba(33, 150, 243, 0.9);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  opacity: 0;
-}
-.card-thumb:hover::before,
-.card-thumb:focus::before {
-  opacity: 1;
-}
-.overlay-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 63px 24px;
 
-  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 250ms var(--animation);
+}
+
+.card-link:hover .card-overlay {
+  transform: translateY(0);
+}
+
+.overlay-text {
+  padding: 63px 24px;
 
   font-size: 18px;
   line-height: 1.55;
   letter-spacing: 0.03em;
   color: #ffffff;
-}
-
-/* Focus не працює?????? */
-.overlay-text:hover,
-.overlay-text:focus {
-  opacity: 1;
 }
