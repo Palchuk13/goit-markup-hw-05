@@ -139,6 +139,8 @@ img {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--animation);
 }
 .current {
   position: relative;
@@ -173,6 +175,8 @@ img {
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--animation);
 }
 
 .contact-mail,
@@ -238,42 +242,14 @@ img {
   letter-spacing: 0.06em;
   color: var(--primary-white-color);
   background-color: var(--accent-color);
+
+  transition: background-color 250ms var(--animation);
 }
 
 .hero-button:focus,
 .hero-button:hover {
   background: #188ce8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-}
-
-.backdrop {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 528px;
-  height: 581px;
-  background: var(--primary-white-color);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-.modal-close {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .filter-btn {
@@ -285,6 +261,9 @@ img {
   line-height: 1.625;
   letter-spacing: 0.03em;
   background-color: #f5f4fa;
+
+  transition: background-color 250ms var(--animation), color 250ms var(--animation),
+    box-shadow 250ms var(--animation);
 }
 
 .filter-btn:focus,
@@ -293,6 +272,74 @@ img {
   background-color: var(--accent-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* ========== Modal ========== */
+
+.backdrop {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition: opacity 250ms var(--animation);
+}
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  min-width: 530px;
+  min-height: 585px;
+  background: var(--primary-white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms var(--animation);
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  fill: var(--title-text-color);
+  background-color: var(--primary-white-color);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  transform: rotate(0);
+}
+
+.modal-close:hover {
+  fill: var(--accent-color);
+  border-color: none;
+
+  transform: rotate(90deg);
+  transition: transform 500ms var(--animation);
 }
 
 /* ========== Feature ========== */
@@ -451,6 +498,8 @@ img {
   height: 44px;
   border-radius: 50%;
   fill: var(--icon-color);
+
+  transition: color 250ms var(--animation), background-color 250ms var(--animation);
 }
 
 .social-link:hover,
@@ -486,11 +535,13 @@ img {
   border: 1px solid #afb1b8;
   border-radius: 4px;
   fill: var(--icon-color);
+
+  transition: fill 250ms var(--animation), border-color 250ms var(--animation);
 }
 
 .company-link:focus,
 .company-link:hover {
-  border-color: (--accent-color);
+  border-color: var(--accent-color);
   fill: var(--accent-color);
 }
 
@@ -532,6 +583,8 @@ img {
   color: var(--primary-white-color);
   line-height: 1.71;
   font-style: normal;
+
+  transition: color 250ms var(--animation);
 }
 
 .link.footer-contact {
@@ -539,6 +592,8 @@ img {
 
   font-style: normal;
   color: rgba(255, 255, 255, 0.6);
+
+  transition: color 250ms var(--animation);
 }
 
 .footer-social-links {
@@ -569,6 +624,8 @@ img {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   fill: var(--primary-white-color);
+
+  transition: background-color 250ms var(--animation);
 }
 
 .footer-link:hover,
